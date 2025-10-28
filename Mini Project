@@ -1,0 +1,50 @@
+from random import randint, uniform
+
+print("Welcome to the Number Guessing Game!\nI'm thinking of a number between 1 and 100.\nYou have 5 chances to guess the correct number.")
+
+print("\nPlease select the difficulty level:\n1. Easy (10 chances)\n2. Medium (5 chances)\n3. Hard (3 chances)")
+
+Playing = True
+
+computer_choice = randint(1,100)
+
+while Playing:
+  
+  player_choice_difficulty = int(input("Enter your choice: "))
+
+  life = 0
+  
+  if player_choice_difficulty == 1:
+    print("Great! You have selected the Easy difficulty level.\nLet's start the game!")
+    life += 10
+  elif player_choice_difficulty == 2:
+    print("Great! You have selected the Medium difficulty level.\nLet's start the game!")
+    life += 5
+  elif player_choice_difficulty == 3:
+    print("Great! You have selected the Hard difficulty level.\nLet's start the game!")
+    life += 3
+  else:
+    print("Error is detected, program will be shut down")
+    Playing = False
+    
+  count = 0
+
+  while life > 0:
+    player_choice_number = int(input("Enter your guess: "))
+    
+    if computer_choice > player_choice_number:
+      print(f"Incorrect! The number is higher than {player_choice_number}")
+
+    elif computer_choice < player_choice_number:
+      print(f"Incorrect! The number is less than {player_choice_number}")
+
+    elif computer_choice == player_choice_number:
+      print(f"Congratulations! You guessed the correct number in {count} attempts.")
+      Playing = False
+      break 
+
+    count += 1
+    life -= 1
+    
+  if life == 0:
+    Playing = False
